@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
       .filter(
         value => value.startsWith('firebase:authUser')
       )[0];
-    this.authService.token = JSON.parse(localStorage.getItem(tokenKey)).stsTokenManager.accessToken;
+    const parsed = JSON.parse(localStorage.getItem(tokenKey));
+    if (parsed) {
+      this.authService.token = parsed.stsTokenManager.accessToken;
+    }
   }
 }
